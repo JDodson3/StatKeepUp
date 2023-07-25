@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StatKeepUp</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body class="bg-white text-white">
+    <header>
+        <nav class="bg-dark border-white">
+            <div class="container">
+                <div class="flex-container">
+                    <div class="h4 pb-2 mb-4 border-bottom border-white">
+                        <h1 class="majority-width">The Official Home of {{user.team_name}} Basketball</h1>
+                    </div>
+                    <div>
+                        <h2>Men's Basketball</h2>
+                        <a href="/dashboard" class="text-light">Back to Roster</a> |
+                        <a href="/user/logout" class="text-light">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+<div class="messages">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for m in messages %}
+                <h5>{{m}}</h5>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+<main>
+    <form action="/players/{{player.id}}/update" method="POST" class="p-4 bg-light text-dark text-center">
+        <h1>Edit Player's Information</h1>
+        <h2>Personal Info</h2>
+        <div class="row">
+            <div class="col">
+                <label for="first_name">First Name</label>
+                <input type="text" class="form-control" name="first_name" value="{{player.first_name}}">
+            </div>
+            <div class="col">
+                <label for="last_name">Last Name:</label>
+                <input type="text" class="form-control" name="last_name" value="{{player.last_name}}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="height">Height(ft):</label>
+                <input type="number" class="form-control" name="height" value="{{player.height}}">
+            </div>
+            <div class="col">
+                <label for="weight">Weight(lbs):</label>
+                <input type="number" class="form-control" name="weight" value="{{player.weight}}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="grade">Class:</label>
+                <input type="text" class="form-control" name="grade" value="{{player.grade}}">
+            </div>
+            <div class="col">
+                <label for="bio">Position:</label>
+                <input type="text" class="form-control" name="bio" value="{{player.bio}}">
+            </div>
+        </div>
+        <h2>Stats</h2>
+        <div class="row">
+            <div class="col">
+                <label for="points_game">Points/game:</label>
+                <input type="number" class="form-control" name="points_game" value="{{player.points_game}}">
+            </div>
+            <div class="col">
+                <label for="rebounds_game">Rebounds/game:</label>
+                <input type="number" class="form-control" name="rebounds_game" value="{{player.rebounds_game}}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="assists_game">Assists/game:</label>
+                <input type="number" class="form-control" name="assists_game" value="{{player.assists_game}}">
+            </div>
+            <div class="col">
+                <label for="blocks_game">Blocks/game:</label>
+                <input type="number" class="form-control" name="blocks_game" value="{{player.blocks_game}}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="steals_game">Steals/game:</label>
+                <input type="number" class="form-control" name="steals_game" value="{{player.steals_game}}">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-secondary">Save Changes</button>
+    </form>
+</main>
+</body>
+</html>

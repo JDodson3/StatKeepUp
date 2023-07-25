@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StatKeepUp</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body class="bg-white bg-gradient text-white">
+    <header>
+        <nav class="bg-dark border-white">
+            <div class="container">
+                <div class="flex-container">
+                    <div class="h4 pb-2 mb-4 border-bottom border-white">
+                        <h1 class="majority-width">The Official Home of {{user.team_name}} Basketball</h1>
+                    </div>
+                    <div>
+                        <h2>Men's Basketball</h2>
+                        <a class="text-light" href="/dashboard" role="button">Back to Roster</a> |
+                        <a class="text-light" href="/user/logout" role="button">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+<div class="messages">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for m in messages %}
+                <h5>{{m}}</h5>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+<main>
+    <div class="card bg-light text-dark border-secondary" style="width: 18rem;">
+        <img src="/Projects_and_Algos/rosters/flask_app/static/images/basketball.jpeg" class="card-img-top" alt="basketball image">
+        <div class="card-body">
+            <h5 class="card-title">{{player.first_name}} {{player.last_name}}</h5>
+            <p class="card-text">Height: {{player.height}} ft</p>
+            <p class="card-text">Weight: {{player.weight}} lbs</p>
+            <p class="card-text">Class: {{player.grade}}</p>
+            <p class="card-text">Position: {{player.bio}}</p>
+        </div>
+    </div>
+    <div class="card text-center bg-dark border-white">
+        <div class="card-header">
+            Season Stats (17 games)
+        </div>
+        <div class="card-body">
+            <table class="table text-light">
+                <thead>
+                    <tr>
+                        <th scope="col">PTS/game</th>
+                        <th scope="col">REB/game</th>
+                        <th scope="col">AST/game</th>
+                        <th scope="col">BLK/game</th>
+                        <th scope="col">STL/game</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{player.points_game}} </td>
+                        <td>{{player.rebounds_game}}</td>
+                        <td>{{player.assists_game}}</td>
+                        <td>{{player.blocks_game}}</td>
+                        <td>{{player.steals_game}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="/players/{{player.id}}/edit" class="btn btn-secondary">Edit Player</a>
+        </div>
+        <div class="card-footer text-light">
+            2 days ago
+        </div>
+    </div>
+</main>
+</body>
+</html>
